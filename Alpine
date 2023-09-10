@@ -1,9 +1,7 @@
 # Imagem com alpine
 FROM alpine
 WORKDIR /root
-RUN apk update && \
- apk add --no-cache curl git wget curl && \
- apk add --no-cache yq && \
+RUN apk add --no-cache curl git wget curl yq && \
  wget https://get.helm.sh/helm-v3.12.3-linux-amd64.tar.gz && \
  tar -zxvf helm* && \
  mv linux-amd64/helm /usr/local/bin/helm && \
