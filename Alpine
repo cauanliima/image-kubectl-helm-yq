@@ -1,14 +1,14 @@
 # Imagem com alpine
 FROM alpine
 WORKDIR /root
-RUN apk update
-RUN apk add git wget curl
-RUN apk add yq
-RUN wget https://get.helm.sh/helm-v3.12.3-linux-amd64.tar.gz
-RUN tar -zxvf helm*
-RUN mv linux-amd64/helm /usr/local/bin/helm
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-RUN chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
-RUN mkdir -p $HOME/.kube
-RUN apk del wget curl
-RUN rm -r *
+RUN apk update && \
+ apk add --no-cache curl git wget curl && \
+ apk add --no-cache yq && \
+ wget https://get.helm.sh/helm-v3.12.3-linux-amd64.tar.gz && \
+ tar -zxvf helm* && \
+ mv linux-amd64/helm /usr/local/bin/helm && \
+ curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
+ chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl && \
+ mkdir -p $HOME/.kube && \
+ apk del wget curl && \
+ rm -r *
